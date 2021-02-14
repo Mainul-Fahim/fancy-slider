@@ -27,7 +27,17 @@ img {
   height: 400px;
   object-fit: cover;
 }
+#detail-hover{
 
+    text-align: center;
+    
+}
+#detail-hover:hover{
+
+  background-color: aqua;
+  display: block;
+  text-align: center;
+}
 .prev-next {
   position: absolute;
   top: 50%;

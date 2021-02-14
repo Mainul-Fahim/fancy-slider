@@ -16,18 +16,18 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 var searchBtn = document.getElementById("search-btn");
 var searchTxt = document.getElementById("search");
 
-searchTxt.addEventListener("keypress", function(event) {
-    if (event.key == 'Enter'){
-      searchBtn.click();
-      console.log("clicked");
-    }
-        
+searchTxt.addEventListener("keypress", function (event) {
+  if (event.key == 'Enter') {
+    searchBtn.click();
+    console.log("clicked");
+  }
+
 });
 
 // spinner
-const toggleSpinner=()=>{
+const toggleSpinner = () => {
 
-  const spinner=document.getElementById('loading-spinner');
+  const spinner = document.getElementById('loading-spinner');
   spinner.classList.toggle('d-none');
 
 }
@@ -41,11 +41,14 @@ const showImages = (images) => {
   images.forEach(image => {
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
-    div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+    div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">
+    <h6 id="detail-hover">likes ${image.likes} comment ${image.comments}</h6>`;
     gallery.appendChild(div)
-    
+
   })
   toggleSpinner();
+
+
 }
 
 //showImages(data.hitS)
@@ -53,7 +56,9 @@ const getImages = (query) => {
   toggleSpinner();
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
-    .then(data => showImages(data.hits))
+    .then(data =>
+      showImages(data.hits)
+    )
     .catch(err => console.log(err))
 
 }
@@ -70,7 +75,7 @@ const selectItem = (event, img) => {
   } else {
     //  alert('Hey, Already added !')
     sliders.pop();
-    
+
   }
 }
 
@@ -153,3 +158,4 @@ searchBtn.addEventListener('click', function () {
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
