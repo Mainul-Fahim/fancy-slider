@@ -24,6 +24,15 @@ searchTxt.addEventListener("keypress", function (event) {
 
 });
 
+var sliderButton = document.getElementById("create-slider");
+var durationSlide = document.getElementById("duration");
+durationSlide.addEventListener("keypress", function (event) {
+  if (event.key == 'Enter') {
+    sliderButton.click();
+    console.log("clicked");
+  }
+
+});
 // spinner
 const toggleSpinner = () => {
 
